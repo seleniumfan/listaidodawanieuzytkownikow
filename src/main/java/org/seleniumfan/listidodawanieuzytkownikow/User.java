@@ -3,9 +3,9 @@ package org.seleniumfan.listidodawanieuzytkownikow;
 public class User {
     private String name;
     private String surname;
-    private int age;
+    private Integer age;
 
-    public User(String name, String surname, int age) {
+    public User(String name, String surname, Integer age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -27,11 +27,11 @@ public class User {
         this.surname = surname;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

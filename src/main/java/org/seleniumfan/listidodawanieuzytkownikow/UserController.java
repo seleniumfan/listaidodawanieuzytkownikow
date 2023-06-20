@@ -2,9 +2,7 @@ package org.seleniumfan.listidodawanieuzytkownikow;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,25 +22,14 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/add")
-    public String addUser(@RequestParam String imie,
-                          @RequestParam String nazwisko,
-                          @RequestParam Integer wiek) {
-        if (imie.isEmpty()) {
-            return "err";
-        }
-        userRepository.addUser(new User(imie, nazwisko, wiek));
-        return "success";
-    }
-
-    @PostMapping("/")
-    public String addUserByPostMethod(@RequestParam String imie,
-                                      @RequestParam String nazwisko,
-                                      @RequestParam Integer wiek) {
-        if (imie.isEmpty()) {
+    @RequestMapping("/add")
+    public String addUser(@RequestParam(name="imie") String name,
+                          @RequestParam(name="nazwisko") String surname,
+                          @RequestParam(name="wiek", required = false) Integer year) {
+        if (name.isEmpty()) {
             return "redirect:/err.html";
         }
-        userRepository.addUser(new User(imie, nazwisko, wiek));
+        userRepository.addUser(new User(name, surname, year));
         return "redirect:/success.html";
     }
 
